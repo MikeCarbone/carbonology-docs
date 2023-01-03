@@ -1,0 +1,46 @@
+import PublicationInfo from "../../components/PublicationInfo";
+import { getStaticProps } from "../../libs/getStaticPropsForPosts";
+
+export { getStaticProps };
+
+# Pooling User Earnings vs. Individual Accounting
+
+<PublicationInfo
+	slug="the-payments-dilemma"
+	publishDate="April 24th, 2021"
+	subtitle="We came up with two strategies for implementing a payments collection method. One gets prison, one doesn't."
+/>
+
+---
+
+One of the most important aspects of the Gatsby platform is enabling communities to earn money. We're "monetization-driven", which means many of our features will be designed to enable community owners to make some fat stacks of cash.
+
+We came up with two strategies for implementing the collection method. Think about which one you'd choose. They differ very slightly, or so we thought...
+
+The first method: when a user pays a community, the payment enters Gatsby's collective bank account. In our database, we keep track of the community owner's balance, not before Gatsby takes its percentage. When they're ready to use that money, they can set up a Stripe account within the Gatsby interface and trigger a deposit to their bank account.
+
+The second method: before a community owner can start collecting money, they have to create a Stripe account. Then when a user pays a community, the money enters directly into their Stripe account. Gatsby takes a percentage on its way out. From there, they can send their money from Stripe to a bank account.
+
+So, if _you_ were building Gatsby, which method would you choose?
+
+With the first method, you'll have direct control over the funds. Everything that enters the Gatsby platform will enter this account, giving direct control, insight, and safety to the business.
+
+With the second approach, we don't have to worry about the security issues, balance tracking, and communities will get their money right away. However, it won't be so easy to reuse the money they earn. The term "Use your Gatsby Balance" probably won't be a thing.
+
+So, have you thought about it? If _you_ were building Gatsby, which method would you choose?
+
+Well, turns out, there are some serious legal implications operating with the first method. Technically, the platform would become a [Payment Facilitator](https://revisionlegal.com/saas/payment-facilitator-regulations/), and like I said earlier, it's pretty similar to a bank. Now you have to be aware of how certain individuals could use your platform to cause harm. If you said option two, you are correct. (The first option is not impossible, but the overhead is way too much for a small team of one.)
+
+In fact, the FTC would not take too kindly to a lackluster implementation of the first method. Here's an example:
+
+Let's say you're a community owner and you happen to live in a country the U.S. [has active sanctions on](https://home.treasury.gov/policy-issues/financial-sanctions/sanctions-programs-and-country-information). Then let's say, in the future, the platform had an option to withdrawal your money without using Stripe. The combination of those two things has now enabled a loophole for foreign entities to use Gatsby as a means for fraud and other financial crimes. Yikes!
+
+When (not if) this gets uncovered, you'd be under investigation by the Financial Crimes Enforcement Network, the Office of Foreign Assets Control, the Federal Trade Commission, and whoever else decides they want to throw the book at you. They'd be queuing up fines in the many millions.
+
+The reason method number two protects you is because we'd require Stripe authentication before you can earn money. So if you're cool with Stripe, you're probably cool with us. We'll let them do the hard work here.
+
+Can't we still offer method one but not allow them to withdrawal to anywhere but Stripe later on? Yes, but that would set up a customer service nightmare (and potentially a PR nightmare as well). If these "restricted" users start earning money, then go to withdrawal and find out they can't because of where they live? Can you imagine the emails we'd get? "Robbery! Theft!"
+
+Plus, another one of our pillars of success is a great user experience. And that, my friends, would not be a good user experience.
+
+Just use Stripe.

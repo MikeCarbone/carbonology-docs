@@ -1,0 +1,43 @@
+import PublicationInfo from "../../components/PublicationInfo";
+import TweetEmbed from "../../components/TweetEmbed";
+import { getStaticProps } from "../../libs/getStaticPropsForPosts";
+
+export { getStaticProps };
+
+# Say No To Premature Optimization
+
+<PublicationInfo
+	slug="say-no-to-premature-optimization"
+	publishDate="January 14th, 2022"
+	subtitle="It's easy as a developer to get carried away with automation. 'If only x was built, I wouldn't have to worry about y', is a common trap. Here's how to avoid it."
+/>
+
+---
+
+Looking back, one of my biggest lessons learned from building Gatsby is to avoid pre-mature automation.
+
+What do I mean by this? Take our payments system, for example. Integrating Stripe was quite a doozy: a custom subscription job, saving payment methods, handling failed payments, handling account balances, etc. There was so much logic that went into all of this. All in all, it took about two months to complete our integration and get to the point where it works. (And at this point, total development time for Gatsby was only at ~3 months, so the payment system was 40% of total time spent. Yuck.)
+
+That system, in hindsight, is _completely_ overkill for the business' needs at that point. We had no users, no recurring revenue, nothing. So why did this payment system get built?
+
+It's easy as a developer to get carried away with automation. "If only x was built, I wouldn't have to worry about y", is a common trap—and honestly, it's often not an incorrect one. As engineers, we're always thinking about scale. Yes, it's true that building this thing will make your job easier down the road when we have 10,000 users. The allure of stress-free development is tempting, especially if you have multiple tasks you're dealing with and want to run the business as passively as possible.
+
+However, one must account for the business' position and its priorities. When considering further automation, you have to challenge yourself: "with the current position of our business, **is this challenge worth undertaking _right now_?**" More often than not, it's not. Elon Musk has a brilliant quote in this department:
+
+<TweetEmbed tweetId="1308284091142266881" />
+
+> The machine that makes the machine is vastly harder than the machine itself.
+
+The whole tweet is a perfect descriptor of what we're trying to accomplish: scale. If everything is automated, scale won't be a problem! However, the difficulty of automating that solution is much much much more difficult than creating a repeatable, manual process for solving that same problem.
+
+That's what I wish we did for Gatsby. Instead of jumping the gun on automation, I wish I had created a lightweight admin interface where I can see whose turn it is to send an invoice that day. Then send them to a pre-built Stripe checkout page. That would've been the true minimum viable product answer. Instead, we over-optimized by over-automating and burned through two months we could've spent on marketing or improving MVP features elsewhere.
+
+I can't help but think about how this would've been avoided if I had properly outlined the work ahead and determined my appetite for this work. Basecamp created this idea of determining appetite, and [this quote sums it up well](https://basecamp.com/shapeup/0.3-chapter-01#shaping-the-work):
+
+> When shaping, we focus less on estimates and more on our **appetite**. Instead of asking how much time it will take to do some work, we ask: How much time do we want to spend? How much is this idea worth?
+
+If I had taken the time to understand that no, this payment integration idea isn't worth spending two months on, or 40% of our total development time, we could've avoided the over-automation.
+
+In the end, it's a lesson learned. Treat all development efforts with great respect and always challenge what "needs" to get built next. I mean, it's not all bad; the payment integration is ready to go, so if we ever do hit scale we'll be set. However, we definitely skipped over some steps in between and certainly mismanaged our time.
+
+This is one of those situations where it's tough balancing being 50% engineer and 50% businessman. Automating processes is tempting, sure, but automating too early can lead to wasted resources and wasted time.

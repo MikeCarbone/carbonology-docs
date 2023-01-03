@@ -1,0 +1,43 @@
+import PublicationInfo from "../../components/PublicationInfo";
+import TweetEmbed from "../../components/TweetEmbed";
+import { getStaticProps } from "../../libs/getStaticPropsForPosts";
+
+export { getStaticProps };
+
+# Design Tokens Only Exist In A Pre-Processed State
+
+<PublicationInfo
+	slug="design-tokens-exist-pre-processed"
+	publishDate="February 11th, 2021"
+	subtitle="Once compiled and transformed, the output is no longer a design token. Instead, it's simply what it is: a key value pair fit for the platform. A variable in a form the platform can understand."
+/>
+
+---
+
+Design tokens are a new concept in design and development that simplifies how we think about supporting brands across different platforms. They enable a single collection of variable objects to power the design of web, iPhone, and Android products, as well as any other branding that a team may need.
+
+There's no standard for working with design tokens, however there are efforts currently underway that are trying to standardize definitions and best practices. The effort is being tackled by a [W3C working group](https://www.w3.org/community/design-tokens/), individuals, startups, and established companies alike.
+
+My team and I at [Arcade](https://usearcade.com/) have been building a design token manager for this reason and have been learning a ton on the way.
+
+Design tokens are new. As we think about them and apply them in our workflows, our understanding will evolve. Two days ago while discussing Arcade, that happened to me.
+
+I know what I'm about to say _may not be received well_. It's going to challenge the current consensus of what a design token is. You've been warned! Here we go...
+
+**Design tokens only exist in a pre-processed state.**
+
+Once compiled and transformed, the output is _no longer a design token_. Instead, it's simply what it is: a key value pair fit for the platform. A variable in a form the platform can understand.
+
+The reason for this conclusion is because the purpose of a design token is to exist as a value, surrounded by context, ready to be transformed. When the design token goes through that transform process, **it will inevitably lose nearly _all_ of its meta information**. That meta information is very important: it provides context to the token and instructions for how that token should be transformed.
+
+For example in Arcade, we have a schema for our tokens that supports fine-grain control of how the rendering engine will handle that specific token. Should this token be ignored for a certain platform? Does the value change depending on the platform? Should we only render this token in certain circumstances?
+
+This is only some of the information that makes up a design token. **Each token object grows more and more as we find more useful information that can be stored in them.** Once that crucial information is gone though, we lose its transform-ability.
+
+Think about it: we can go from our token source to CSS very easily. We can also go from our token source to Android very easily. But can we go from CSS to Android? No. Because **we lost all of the meta information and rendering instructions** that were included in the original, pre-rendered design token. Not only that, but the name and value might have completely changed from the source!
+
+When explaining this concept to the team, I used a metaphor of a tomato. You can go from a tomato to pasta sauce _very easily_. You can go from a tomato to a slice of it on a sandwich _very easily_. But can you go from sauce to a sliced tomato? No! Because that original tomato has been completely transformed and its original state is completely unrecognizable.
+
+So moving forward, I'm going to be using this frame of thought when talking about design tokens. I can't see it any other way. **While organizations might not have this expansive amount of information around their design tokens yet, I imagine they will soon** to further enable their teams. Considering what is and isn't a design token is important.
+
+Design tokens only exist in a pre-processed state in their source. Do you agree? Disagree? I'd like to hear what you think.

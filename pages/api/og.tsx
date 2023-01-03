@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { domain } from "../../libs/constants/urls";
 
 export const config = {
-	runtime: "edge",
+	runtime: "experimental-edge",
 };
 
 // Make sure the font exists in the specified path:

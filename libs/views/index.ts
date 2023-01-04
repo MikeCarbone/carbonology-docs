@@ -1,10 +1,12 @@
 import { domain } from "../constants/urls";
 
 export const getViews = ({ slug }) => {
-	return fetch(`${domain}/api/posts/${slug}/views`);
+	const url = new URL(`/api/posts/${slug}/views`, domain);
+	return fetch(url);
 };
 
 export const logView = ({ slug }) => {
 	if (process.env.NODE_ENV === "development") return;
-	return fetch(`${domain}/api/posts/${slug}/views`, { method: "POST" });
+	const url = new URL(`/api/posts/${slug}/views`, domain);
+	return fetch(url, { method: "POST" });
 };

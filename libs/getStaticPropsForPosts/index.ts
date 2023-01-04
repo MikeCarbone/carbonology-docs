@@ -1,6 +1,6 @@
 import { getViews } from "../views";
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
 	return getViews({ slug: "all" })
 		.then((res) => res.json())
 		.then((data) => ({
@@ -14,4 +14,4 @@ export const getStaticProps = async () => {
 			// The page will be considered as stale and regenerated every 60 seconds.
 			revalidate: 60,
 		}));
-};
+}

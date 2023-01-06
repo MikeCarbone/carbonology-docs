@@ -18,23 +18,21 @@ export default async (req, res) => {
 		}
 
 		if (req.method === "GET") {
-			let snapshot;
-			// If the slug is all, return views for all the posts
+			const ref = db.ref("views");
+			const snapshot = await ref.once("value");
 			if (req.query.slug === "all") {
-				snapshot = await db.ref("views").once("value");
-			} else {
-				// If not just return the views for that slug
-				snapshot = await db
-					.ref("views")
-					.child(req.query.slug)
-					.once("value");
+				// If the slug is all, return views for all the posts
+				const views = snapshot.val();
+				return res.status(200).json({ total: views });
 			}
-			const views = snapshot.val();
 
-			return res.status(200).json({ total: views });
+			// If not just return the views for that slug
+			const viewCount = snapshot.val()[req.query.slug];
+
+			return res.status(200).json({ total: viewCount });
 		}
 	} catch (err) {
 		console.error(err);
-		return res.status(500).json({ total: 0 });
+		return res.status(500).json({ total: 0, did_error: true });
 	}
 };

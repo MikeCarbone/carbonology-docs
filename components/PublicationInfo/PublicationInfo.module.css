@@ -1,0 +1,29 @@
+.separator {
+    color: grey;
+	margin: 0 15px;
+	transform: scale(1.5) translateY(-2px);
+}
+
+.metric {
+    font-size: 0.9rem;
+    color: grey;
+}
+
+.container {
+    display: flex;
+	margin: 20px 0 0px 0;
+}
+
+@media (max-width: 810px) {
+    .separator {
+        display: none;
+    }
+    
+    .metric {
+        margin: 8px 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+}
